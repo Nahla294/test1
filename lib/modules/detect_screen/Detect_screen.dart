@@ -59,13 +59,9 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                       child: Image.asset(
                         imagePath,
                         key: imageKey,
-                        //color: Colors.red,
-                        //colorBlendMode: BlendMode.hue,
-                        //alignment: Alignment.bottomRight,
                         fit: BoxFit.none,
-                        //scale: .8,
                       ),
-                    ),
+                    ), //image container
                   ),
                 ),
                 Container(
@@ -82,7 +78,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                             blurRadius: 4,
                             offset: Offset(0, 2))
                       ]),
-                ),
+                ), //circle container
 
                 Positioned(
                   child: Text('${selectedColor}',
@@ -91,7 +87,7 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
                           backgroundColor: Colors.black54)),
                   left: 114,
                   top: 95,
-                ),
+                ), //shaded rectangle of color hexa code
               ],
             );
           }),
@@ -121,6 +117,15 @@ class _ColorPickerWidgetState extends State<ColorPickerWidget> {
 
     int pixel32 = photo.getPixelSafe(px.toInt(), py.toInt());
     int hex = abgrToArgb(pixel32);
+    Color myColor = Color(hex);
+    print(myColor);
+
+    List<int> getRGB(Color c) {
+      return [c.red, c.blue, c.green];
+    }
+    Color c = Color(hex);
+    List<int> color=getRGB(c);
+    print(color);
 
     _stateController.add(Color(hex));
   }
